@@ -1,0 +1,27 @@
+{
+    "name": "svtvsl/practserver",
+    "description": "Description",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Светлана",
+            "email": "svetlanavasil44@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.4 | ^8.0",
+        "illuminate/database": "^11.0@dev",
+        "illuminate/events": "^11.0@dev",
+        "zqhong/route": "dev-master",
+        "nikic/fast-route": "^2.0@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Src\\": "core/Src/",
+            "": "app/"
+        }
+    }
+
+}

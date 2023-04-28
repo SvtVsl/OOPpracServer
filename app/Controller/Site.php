@@ -35,13 +35,12 @@ class Site
             'unique' => 'Поле :field должно быть уникально'
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
 //Данные не прошли валидацию
         }
-
     }
 
-    public function login(Request $request): string
+        public function login(Request $request): string
     {
         //Если просто обращение к странице, то отобразить форму
         if ($request->method === 'GET') {

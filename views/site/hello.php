@@ -10,18 +10,18 @@
 <body>
 
 <style>
- form>p{
+ form>a{
      text-align: center;
 
  }
 
- button{
+ form>a{
      text-align: center;
      width: 350px;
      height: 250px;
 
  }
- button:last-child{
+ form>a:last-child{
      margin-left: 100px;
  }
 </style>
@@ -31,8 +31,8 @@
 </div>
 
 <form>
-    <p><button>Помещение</button>
-        <button>Подразделение</button>
+    <a href="<?= app()->route->getUrl('/premises') ?>">Помещение</a>
+        <a href="<?= app()->route->getUrl('/divisions') ?>">Подразделения</a>
 </form>
 
 

@@ -1,7 +1,7 @@
 <?php
 namespace Controller;
 
-use Model\Post;
+use Model\Premise;
 use Model\User;
 use Src\Request;
 use Src\Validator\Validator;
@@ -12,12 +12,17 @@ class Site
 {
 
     //убрали index(Request $request)
-    public function index(): string
+    public function premises(): string
     {
-        // убрали Post::where('id', $request->id)->get();
-        $posts = Post::all();
-        return (new View())->render('site.post', ['posts' => $posts]);
+        $premises = Premise::all();
+        return (new View())->render('site.premises', ['premises' => $premises]);
 
+    }
+//помещение с бд
+    public function subdivision(Request $request): string
+    {
+        $divisions = Division::all();
+        return (new View())->render('site.divisions', ['divisions' => $divisions]);
     }
 
     public function hello(): string

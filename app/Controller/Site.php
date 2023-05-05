@@ -43,30 +43,32 @@ class Site
         return new View('site.go', ['message' => 'Fine']);
     }
 
-    public function signup(Request $request): string
+    //Пользователи
+
+    public function user(Request $request): string
     {
-        if ($request->method === 'POST') {
-
-            $validator = new Validator($request->all(), [
-                'name' => ['required'],
-                'login' => ['required', 'unique:users,login'],
-                'password' => ['required']
-            ], [
-                'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально'
-            ]);
-
-            if($validator->fails()){
-                return new View('site.signup',
-                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
-            }
-
-            if (User::create($request->all())) {
-                app()->route->redirect('/login');
-            }
-        }
-        return new View('site.signup');
+        $users = User::all();
+        return (new View())->render('site.user', ['users' => $users]);
     }
+
+    public function update_user(Request $request)
+    {
+        $roles = Role::all();
+        $users= User::where('id', $request->id)->first();
+        if($request->method === 'POST') {
+            $updateUsers = [
+                'name' => $request->get('name'),
+                'login' => $request->get('login'),
+                'password' => $request->get('password'),
+                'id_role' => $request->get('id_role'),
+            ];
+            $users->update($updateUsers);
+            return app()->route->redirect('/users?id=' . $users->id);
+        }
+        return (new View())->render('site.update_user', ['users' => $users, 'roles' => $roles,]);
+    }
+
+
 
 
 

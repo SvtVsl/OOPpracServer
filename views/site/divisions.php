@@ -1,5 +1,5 @@
 <h1>Подразделения</h1>
-<table>
+<table class="table table-striped">
     <tr>
         <th>ID</th>
         <th>Вид подразделения</th>

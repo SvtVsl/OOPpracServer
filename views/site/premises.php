@@ -1,5 +1,5 @@
 <h1>Список помещений</h1>
-<table>
+<table class="table table-striped">
     <tr>
         <th>ID</th>
         <th>Номер помещения</th>
@@ -10,21 +10,24 @@
     </tr>
     <?php
     foreach ($premises as $premise) {
-        echo '
+        ?>
                 <tr>
-                    <td>'. $premise->id .'</td>
-                    <td>'. $premise-> number_premies.'</td>
-                    <td>'. $premise->square.'</td>
-                    <td>'. $premise->id_department .'</td>
-                    <td>'. $premise->type_premises .'</td>
-                    <td>'. $premise->number_seats .'</td>
+                    <td><?=$premise->id ?></td>
+                    <td><?=$premise-> number_premies?></td>
+                    <td><?=$premise->square?></td>
+                    <td><?=$premise->id_department ?></td>
+                    <td><?= $premise->type_premises ?></td>
+                    <td><?=$premise->number_seats ?></td>
+                    <td><a href="<?= app()->route->getUrl('/update_premises?id=' . $premise->id) ?>">Изменить</a></td>
                 </tr>
-            ';
+        <?php
     }
     ?>
 </table>
 
 <a href="<?= app()->route->getUrl('/add_premises') ?>">Добавить</a>
+
+
 
 
 

@@ -22,8 +22,11 @@
             ';
     }
     ?>
-
 </table>
+
+<a href="<?= app()->route->getUrl('/add_premises') ?>">Добавить</a>
+
+
 
 
 

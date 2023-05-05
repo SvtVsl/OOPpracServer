@@ -1,33 +1,46 @@
 <?php
 namespace Controller;
 
+use Model\Division;
 use Model\Premise;
 use Model\User;
 use Src\Request;
 use Src\Validator\Validator;
 use Src\View;
 use Src\Auth\Auth;
+use Model\Type_division;
 
 class Site
 {
 
-    //убрали index(Request $request)
-    public function premises(): string
-    {
-        $premises = Premise::all();
-        return (new View())->render('site.premises', ['premises' => $premises]);
-
-    }
-//помещение с бд
-    public function subdivision(Request $request): string
+//поlразделение
+    public function divisions(): string
     {
         $divisions = Division::all();
-        return (new View())->render('site.divisions', ['divisions' => $divisions]);
+        $premises = Premise::all();
+        return (new View())->render('site.divisions', ['divisions' => $divisions, 'premises' => $premises]);
     }
+
+    public function add_divisions(): string
+    {
+        $divisions = Division::all();
+        $premises = Premise::all();
+        $type_division = Type_division::all();
+        if ($request->method === 'POST' && Division::create($request->all())) {
+
+            app()->route->redirect('/divisions');
+        }
+        return (new View())->render('site.divisions', ['divisions' => $divisions, 'premises' => $premises, 'type_division' => $type_division]);
+    }
+
 
     public function hello(): string
     {
         return new View('site.hello', ['message' => 'Fine']);
+    }
+    public function index(): string
+    {
+        return new View('site.go', ['message' => 'Fine']);
     }
 
     public function signup(Request $request): string
